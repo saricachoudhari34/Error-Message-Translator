@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Message Translator</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #98c6f0;
+            text-align: center;
+            padding: 40px;
+        }
+
+        textarea {
+            width: 60%;
+            height: 120px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🛠 Error Message Translator</h1>
+
+<form method="POST">
+    <textarea name="error_message" placeholder="Paste your scary error here..."></textarea>
+    <br>
+    <button type="submit">Translate Error</button>
+</form>
+
+{% if result %}
+<div class="result-box">
+    <h2>🔍 Why this happens</h2>
+    <p>{{ result.why }}</p>
+
+    <h2>⚠ Common causes</h2>
+    <ul>
+        {% for cause in result.causes %}
+            <li>{{ cause }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>🛠 How to fix</h2>
+    <p>{{ result.fix }}</p>
+</div>
+{% endif %}
+
+</body>
+</html>
